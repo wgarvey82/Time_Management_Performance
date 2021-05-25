@@ -4,7 +4,6 @@ author: "W.F.Garvey"
 date: "2021/05/24"
 output:
   html_document: default
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
