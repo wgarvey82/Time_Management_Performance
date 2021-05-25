@@ -11,19 +11,20 @@ library(tidyverse)
 library(readr)
 library(dplyr)
 setwd(here::here())
-data <- read.csv("time_man_performance.csv")
 ```
 
 ## Overview
 The Student Time Management and Performance data set posted by user DarwinLi on [Kaggle](https://www.kaggle.com/xiaowenlimarketing/international-student-time-management?select=Sheet2.csv) includes data on 125 students regarding various demographics, academic performance (AP), courses, English language proficiency (ELP), and responses to a questionnaire regarding time management. This is a diverse sample of students with **44** different reported nationalities. Although this data was collected from Nottingham Trent International College, it is unclear whether these students studied at an English-speaking university. According to the data publishers, the questionnaire is based on the Time Management Behaviour scale developed by Gary M. Williams, Hannah Pendlebury, Kai Thomas, Andrew P. Smith (1990). The relationship between time management scores (TM) and test scores will be compared alongside other variables to investigate determinants of any relationship. It is expected that better time management scores will correlate with improved test scores - either AP or ELP - based on the notion that students who can manage their time better could prepare more for tests. This data is challenging to visualize, because academic performance (AP) and English language proficiency (ELP) were reported as **<40, 40-49, 50-59, 60-70,** and **>70**. As such these data have continuous and discrete properties, and unorthodox techniques are utilized to visualize data in relation to TM.
 
-```{r, echo=FALSE}
+```{r}
+data <- read.csv("time_man_performance.csv")
+
 head(data, 5)
 ```
 
 ## Data Exploration
 
-```{r, echo=FALSE}
+```{r}
 # Creates data frame for codifying questionnaire responses.
 revcode <- c(5:1)
 fwdcode <- c(1:5)
@@ -40,7 +41,7 @@ fwdcodedf <- data.frame(codec,
                         fwdcode)
 ```
 
-```{r, echo=FALSE} 
+```{r} 
 #These functions match *revcode* and *fwdcode*, respectively, based on the associated *codec* in the *revcodedf* and *fwdcodedf* data frames to specified columns of another data frame *q*.
 
 revcodefunc <- function(q){
@@ -104,7 +105,7 @@ indiv_test_labels <- c("40-49","50-59","60-70", ">70")
 
 Comparison of academic scores and total time management ability scores reveals an apparent slightly positive correlation.
 
-```{r, echo=FALSE}
+```{r}
 academic_plot <- ggplot(data, 
                         aes(x=academic, 
                             y=TM)) 
@@ -121,7 +122,7 @@ academic_plot+
 
 Because the students reported their AP in ranges, AP has a more discrete, less meaningful distribution. The same problem happens when comparing ELP scores and TM...
 
-```{r, echo=FALSE}
+```{r}
 english_plot <- ggplot(data, 
                        aes(x=english, 
                           y=TM))
@@ -138,7 +139,7 @@ english_plot+
 
 ...and AP and ELP.
 
-```{r, echo=FALSE}
+```{r}
 academic_english <- ggplot(data, 
                            aes(x=academic, 
                                y=english))+
@@ -211,7 +212,7 @@ data %>% count(business)
 
 Non-business students appear to have slightly greater AP, but the TM AP correlations seem similar between groups.
 
-```{r, echo=FALSE}
+```{r}
 #Adds colorblind-friendly palette Retrieved from [Cookbook for R](http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/). 
 cbbPalette <- c("#000000", "#E69F00", 
                 "#56B4E9", "#009E73", 
@@ -248,7 +249,7 @@ The differences between these groups seems negligible. The TM scores, especially
 
 The gender distribution in this sample is much more similar.
 
-```{r, echo=FALSE}
+```{r}
 data %>% count(gender) 
 
 data %>% group_by(gender) %>% 
@@ -291,7 +292,7 @@ aca_gender+
 
 Even with a 90% confidence interval, the TM and AP correlation do not appear significantly different across genders. Examining the difference in the distribution may still provide insight on a relationship between these variables.
 
-```{r, echo=FALSE}
+```{r}
 #Creates a violin plot examining the density of academic performance and time management scores between male and female students.
 aca_gender+geom_violin(scale="area", 
               draw_quantiles = .5, 
@@ -323,7 +324,7 @@ aca_gender+geom_violin(scale="area",
 
 Other density plots were explored to improve the visualization of the influence of gender on AP and TM.
 
-```{r, echo=FALSE}
+```{r}
 aca_gender+
   stat_density_2d(contour_var="ndensity", #The figure is computed based off of the density estimate scaled to 1. 
                  size=1, 
