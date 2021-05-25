@@ -2,8 +2,7 @@
 title: "Student Time Management and Performance"
 author: "W.F.Garvey"
 date: "2021/05/24"
-output:
-  html_document: default
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
