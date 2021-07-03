@@ -357,7 +357,7 @@ aca_gender+stat_density_2d_filled(contour_var="ndensity",
 
 ## Conclusion
 
-The final figure beautifully highlights a difference in the distribution of TM scores and AP by gender. The TM scores for male students was fairly evenly distributed across APs with barely an indication of an upward trend. The female students, however, cover a wider range of the plot with a clear indication of an upward trend. The central density for female students is also slightly higher in AP and TM. Overall, this data may suggest that male international students 
+The final figure beautifully highlights a difference in the distribution of TM scores and AP by gender. The TM scores for male students was fairly evenly distributed across APs with barely an indication of an upward trend. The female students, however, cover a wider range of the plot with a clear indication of an upward trend. The central density for female students is also slightly higher in AP and TM. Male international students' AP may be generally less dependent on TM. However, because the distribution of male TM scores is more concentrated, a relationship between TM and AP for male students may be hidden. The AP of male international students could still benefit from improvements in TM. 
 
 ## References
 
